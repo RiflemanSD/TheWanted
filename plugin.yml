@@ -1,0 +1,14 @@
+name: TheWanted
+main: com.wanted.TheWanted
+version: 1.0
+author: Rifleman
+commands:
+  wanted:
+    description: See ur wanted (wanted|rank|kills|deaths)
+    usage: |
+           /<command>
+  topwanted:
+    description: See the top wanted players
+    usage: |
+           /<command>
+  

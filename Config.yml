@@ -1,0 +1,8 @@
+## Default config for TheWanted.
+DataSource:
+  mySQLTablename: players
+  mySQLUsername: sqluser
+  mySQLDatabase: wanteddb
+  mySQLPort: '3306'
+  mySQLHost: 127.0.0.1
+  mySQLPassword: 'sqluserpw'
