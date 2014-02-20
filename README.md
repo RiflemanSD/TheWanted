@@ -1,4 +1,4 @@
-src
+TheWanted
 ===
 This project is a bukkit plugin for minecraft servers.
 
