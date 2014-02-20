@@ -1,8 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Open source License
+ *
+ * Project name: TheWanted
+ * Main class: com.wanted.TheWanted
+
+ * © Copyright - Sotiris Doudis 
+*/
 
 package com.database;
 
@@ -18,8 +21,11 @@ import java.util.List;
 import org.bukkit.entity.Player;
 
 /**
- *
- * @author sovadi
+ * This class is a class for control of the database.
+ * From this class the programm connecting to the server database,
+ * and from methos can get/change players data
+ * 
+ * @author Sotiris Doudis
  */
 public class DataBase {
     private String driver;
@@ -40,6 +46,15 @@ public class DataBase {
     
     private Connection con;
     
+    /**
+     * Constractor of class DataBase,
+     * here we initialize the database datas and we doing the setup of
+     * the main table
+     * 
+     * @param conf - a Configuration variable to get config.yml connect data
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public DataBase(Configuration conf) throws ClassNotFoundException, SQLException {
         this.driver = "com.mysql.jdbc.Driver";  
         this.dbUrl = "jdbc:mysql://localhost/";
@@ -127,6 +142,11 @@ public class DataBase {
         }
     }
     
+    /**
+     * This method add a new player at the database
+     * 
+     * @param player - the player who will added at the database
+     */
     public void addNewPlayer(Player player) {
         System.out.println("Player: " + player.getName() + " joined the game 1st time");
         PreparedStatement pst = null;
@@ -155,6 +175,12 @@ public class DataBase {
                 this.closeConnection();
         }
     }
+
+    /**
+     * 
+     * @param player - player who will see his the data
+     * @return a String for the data of the player. like: rank,wanted,kills,deaths
+     */
     public String getPlayerData(Player player) {
         PreparedStatement pst = null;
         String data = "none";
@@ -192,22 +218,53 @@ public class DataBase {
                 return data;
         }
     }
+
+    /**
+     *
+     * @param player
+     * @return player's rank
+     */
     public int getPlayerRank(Player player) {
         String data = this.getPlayerData(player);
         return Integer.parseInt(data.split(",")[0]);
     }
+
+    /**
+     *
+     * @param player
+     * @return player's wanted
+     */
     public int getPlayerWanted(Player player) {
         String data = this.getPlayerData(player);
         return Integer.parseInt(data.split(",")[1]);
     }
+
+    /**
+     *
+     * @param player
+     * @return player's kills
+     */
     public int getPlayerKills(Player player) {
         String data = this.getPlayerData(player);
         return Integer.parseInt(data.split(",")[2]);
     }
+
+    /**
+     *
+     * @param player
+     * @return player's deaths
+     */
     public int getPlayerDeaths(Player player) {
         String data = this.getPlayerData(player);
         return Integer.parseInt(data.split(",")[3]);
     }
+
+    /**
+     * This method show at a player the top wanted players.
+     * @param player - player who will see the top wanted
+     * @param number - number of max return results
+     * @return a String array with top players
+     */
     public String[] getTopPlayers(Player player, int number) {
         Statement stmt = null;
         String[] players = new String[number];
@@ -244,6 +301,13 @@ public class DataBase {
                 return players;
         }
     }
+
+    /**
+     * This method updated the rank of the player
+     * 
+     * @param player
+     * @param newRank
+     */
     public void updateRank(Player player, int newRank) {
         PreparedStatement pst = null;
         try{
@@ -267,6 +331,13 @@ public class DataBase {
         }
         
     }
+
+    /**
+     * This method changing the players wanted
+     * 
+     * @param player
+     * @param newWanted
+     */
     public void updateWanted(Player player, int newWanted) {
         PreparedStatement pst = null;
         try{
@@ -289,6 +360,13 @@ public class DataBase {
                 this.closeConnection();
         }
     }
+
+    /**
+     * This method changing the players kills
+     * 
+     * @param player
+     * @param newKills
+     */
     public void updateKills(Player player, int newKills) {
         PreparedStatement pst = null;
         try{
@@ -311,6 +389,13 @@ public class DataBase {
                 this.closeConnection();
         }
     }
+
+    /**
+     * This method changing the players deaths
+     * 
+     * @param player
+     * @param newDeaths
+     */
     public void updateDeaths(Player player, int newDeaths) {
         PreparedStatement pst = null;
         try{
@@ -334,6 +419,12 @@ public class DataBase {
         }
     }
 
+    /**
+     * This method checking if a player allready exists
+     * 
+     * @param player
+     * @return true if the player not exists at database
+     */
     public boolean playerNotExists(Player player) {
         boolean exists = true;
         PreparedStatement pst = null;

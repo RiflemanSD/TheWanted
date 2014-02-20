@@ -1,8 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Open source License
+ *
+ * Project name: TheWanted
+ * Main class: com.wanted.TheWanted
+
+ * © Copyright - Sotiris Doudis 
+*/
 
 package com.wanted;
 
@@ -10,18 +13,33 @@ import com.database.DataBase;
 import org.bukkit.entity.Player;
 
 /**
- *
- * @author sovadi
+ * This class calculating the changes at the players wanted and rank, when a 
+ * player killing another player
+ * 
+ * @author Sotiris Doudis 
  */
 public class CalculateWantedChange {
     private DataBase database;
     private double dif;
     
+    /**
+     * Constractor of the class
+     * We geting the databse so we can get and change the player stats
+     * 
+     * @param database
+     */
     public CalculateWantedChange(DataBase database) {
         this.database = database;
         dif = 10.0;
     }
     
+    /**
+     * In this method we get the killer and the victim, and we calculating the
+     * diffrenect between them, so we can change his data
+     * 
+     * @param killer - player who kill victim
+     * @param victim - player who killed by killer
+     */
     public void changeWantedFor(Player killer, Player victim) {
         int kRank = this.database.getPlayerRank(killer);
         int kWanted = this.database.getPlayerWanted(killer);

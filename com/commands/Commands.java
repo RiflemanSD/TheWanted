@@ -1,7 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Open source License
+ *
+ * Project name: TheWanted
+ * Main class: com.wanted.TheWanted
+ *
+ * © Copyright - Sotiris Doudis
  */
 
 package com.commands;
@@ -15,12 +18,30 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- *
- * @author sovadi
+ * This class, creating the commands of the plugin.
+ * A command in a minecraft server, is a way so players can contact with the
+ * server. For example a command can teleport a player to another location or 
+ * give him items etc.
+ * 
+ * In this plugin we have create 2 commands
+ * Command: /wanted, this command showing the players data
+ * Command: /topwanted, this command showing the top players to the player who
+ * executed it
+ * 
+ * @author Sotiris doudis
  */
 public class Commands implements CommandExecutor {
     private DataBase database;
     
+    /**
+     * Constractor of class
+     * Here we telling to the server to set the executor so when a player execute
+     * /wanted or /topwanted command, the server we call our methods
+     * We need to get the database of the plugin so we can get and show in a 
+     * player the database stats
+     * 
+     * @param database
+     */
     public Commands(DataBase database) {
         this.database = database;
         
@@ -28,6 +49,21 @@ public class Commands implements CommandExecutor {
 	Bukkit.getPluginCommand("topwanted").setExecutor(this);
     }
     
+    /**
+     * When a command execute will call this method.
+     * This method getting the player who execute the command, the command and 
+     * the arguments of the command.
+     * 
+     * In this method we checking what commands was executed and we running our
+     * methods, if /wanted command was execute we running the wanted() method and
+     * show at the player the data
+     * 
+     * @param sender - who execute the command
+     * @param command - the command was executed
+     * @param commandLabel
+     * @param args - arguments of the command
+     * @return true if the command could executed right
+     */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
         String commandName = command.getName().toLowerCase();
