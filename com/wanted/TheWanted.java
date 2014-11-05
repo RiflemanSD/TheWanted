@@ -28,12 +28,12 @@ import org.bukkit.plugin.java.JavaPlugin;
  * This project is a plugin for the bukkit minecraft servers
  * More info here: http://dev.bukkit.org/bukkit-plugins/thewanted/
  * 
- * This plugin add a table with all players in the MySQL database of the server.
- * In this table players have some statics, about kills and deaths,
- * also players get a rank and a Wanted price for the player who can kill them.
- * When a player killing and other he getting more rank depends on the killed
+ * This plugin create a table with all players in the MySQL database of the server.
+ * In this table players have some statistics, about kills and deaths,
+ * also players get a rank and a Wanted price for the player who will kill them.
+ * When a player killing others he getting more rank depends on the killed
  * player rank!
- * Ur gold is to get to the top wanted players.
+ * Your goad is to get to the top wanted players.
  * 
  * The project is open source
  * 
@@ -86,7 +86,7 @@ public class TheWanted  extends JavaPlugin {
     public static Configuration conf;
     
     /**
-     * When plugin becomes disable just write a message and the logger
+     * When plugin becomes disable just write a message at the logger
      */
     @Override
     public void onDisable() {
